@@ -7,6 +7,7 @@ const persistenceFile = "./database/productsPersistenceFile.json";
 
 //function
 function getProductsFromFile(){
+    const persistenceFile = "./database/productsPersistenceFile.json";
     let data;
     try{
         data = fs.readFileSync(persistenceFile, "utf-8");
@@ -50,11 +51,16 @@ function validateProductObject(product){
 function idGenerate(){
     const products = getProductsFromFile();
     let array = [];
-    for(i=0; i < products.length; i++){
-        array[i] = Number(products[i].id)
+    if(products.length >= 1){
+        for(i=0; i < products.length; i++){
+            array[i] = Number(products[i].id)
+        }
+        array.sort((a,b)=>a-b)
+        return (array[array.length-1]+1)
     }
-    array.sort((a,b)=>a-b)
-    return (array[array.length-1]+1)
+    else{
+        return 0;
+    }
 }
 
 
@@ -92,7 +98,7 @@ const databaseOperationsProducts = {
         else{
             const product = data;
             product.id = Number(id);
-            validateProductObject(product)
+            validateProductObject(product);
             products[searchedIndex] = product;
             addProductsToFile(products);            
             return products;
@@ -118,4 +124,4 @@ const databaseOperationsProducts = {
 
 }
 
-module.exports = { databaseOperationsProducts }
+module.exports = { databaseOperationsProducts, getProductsFromFile }

@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended:true }))
 
 //routers
 app.use("/api/products", routerProducts);
-app.use("/api/cart", routerCart);
+app.use("/api/carts", routerCart);
 
 //server
 const PORT = 8080;
