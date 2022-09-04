@@ -45,3 +45,4 @@ API routes (carts) y ejemplos de uso:
     DELETE --> http://localhost:8080/api/carts/2/products/1 --> Eliminar un producto del carrito por su id de carrito y de producto.
 
     DELETE --> http://localhost:8080/api/carts/2 --> Vaciar/eliminar un carrito.
+
